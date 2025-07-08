@@ -32,7 +32,7 @@ pipeline {
                 echo "Unzipping Talend job..."
                 bat '''
                     if exist job2 rmdir /s /q job2
-                    powershell -Command "Expand-Archive -Force CI_CD_DEMO_PROJECT_0.1.zip .\\job2"
+                    powershell -Command "Expand-Archive -Force talendcicd_0.1.zip .\\job2"
                 '''
             }
         }
@@ -42,7 +42,7 @@ pipeline {
                 echo "Running Talend ETL job..."
                 bat '''
                     cd job2\\CI_CD_DEMO_PROJECT
-                    call CI_CD_DEMO_PROJECT_run.bat --context=Default --context_param CSV_FILE_PATH=%CSV_FILE_PATH%
+                    call talend-ci-cd.bat --context=Default --context_param CSV_FILE_PATH=%CSV_FILE_PATH%
                 '''
             }
         }
